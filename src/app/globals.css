@@ -1,33 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/**/
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 0,0,0,1;
+  --background-end-rgb: 121,9,9,1;
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
+    --foreground-rgb: 2,0,36;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/*scroll*/
+body::-webkit-scrollbar {background-color: #242411 ; width: 10px;}
+body::-webkit-scrollbar-button { background-color: #242411; color: #242411 ;}
+body::-webkit-scrollbar-track  { background-color:#242411;}
+body::-webkit-scrollbar-track-piece  { background-color: #242411;}
+body::-webkit-scrollbar-thumb  {  background:  #C8102E;}
+body::-webkit-scrollbar-corner { background-color:#242411;}
+body::-webkit-resizer {background-color:#242411;}
+body::-webkit-scrollbar-button:single-button {display: none;}
+body{scrollbar-color: #C8102E #242411; scrollbar-width: thin;}
+/**/
+.post .post-body::-webkit-scrollbar {background-color: rgb(247 194 156) ; width: 5px;}
+.post .post-body::-webkit-scrollbar-button { background-color: rgb(247 194 156); color: rgb(247 194 156) ;}
+.post .post-body::-webkit-scrollbar-track  { background-color:rgb(247 194 156);}
+.post .post-body::-webkit-scrollbar-track-piece  { background-color: rgb(247 194 156);}
+.post .post-body::-webkit-scrollbar-thumb  {  background:  #C8102E;}
+.post .post-body::-webkit-scrollbar-corner { background-color:rgb(247 194 156);}
+.post .post-body::-webkit-resizer {background-color:rgb(247 194 156);}
+.post .post-body::-webkit-scrollbar-button:single-button {display: none;}
+.post .post-body{scrollbar-color: #C8102E rgb(247 194 156); scrollbar-width: thin;}
+/*fonts*/
+@font-face {font-family: 'Orgovan';src: url('../Assets/fonts/Orgovan-Brush.woff2') format('woff2'),    url('../Assets/fonts/Orgovan-Brush.woff') format('woff');font-weight: normal;font-style: normal;font-display: swap;}
+/*basic codes*/
+* {box-sizing: border-box;}
+body {color: rgb(var(--foreground-rgb));background: rgb(var(--background-start-rgb));background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(var(--background-end-rgb)) 0%, rgba(var(--background-start-rgb)) 100%); }
+h1,h3 {font-family: 'Orgovan';}
+input:focus, textarea:focus{box-shadow: none;border:none;--tw-ring-color:tranparent !important;}
+textarea{resize:none;}
+/*full-page-loader*/
+.loader-file {position: absolute;top: 0;left: 0;right: 0;bottom: 0;background: rgb(0 0 0 / 90%);display: flex;justify-content: center;align-items: center;}
+.loader-file .loading {display: flex;flex-direction: row;}
+.loader-file .loading__letter {font-size: 88px;font-weight: normal;letter-spacing: 4px;text-transform: uppercase;font-family: 'Orgovan';color: #C8102E;animation-name: bounce;animation-duration: 2s;animation-iteration-count: infinite;}
+.loader-file .loading__letter:nth-child(2) {animation-delay: .1s;	}
+.loader-file .loading__letter:nth-child(3) {animation-delay: .2s;}
+.loader-file .loading__letter:nth-child(4) {animation-delay: .3s;	}
+.loader-file .loading__letter:nth-child(5) {animation-delay: .4s;}
+.loader-file .loading__letter:nth-child(6) {animation-delay: .5s;	}
+.loader-file .loading__letter:nth-child(7) {animation-delay: .6s;}
+.loader-file .loading__letter:nth-child(8) {animation-delay: .8s;}
+.loader-file .loading__letter:nth-child(9) {animation-delay: 1s;}
+.loader-file .loading__letter:nth-child(10) {animation-delay: 1.2s;}
+@keyframes bounce {
+  0% {transform: translateY(0px)}
+  40% {transform: translateY(-40px);}
+  80%,
+  100% {transform: translateY(0px);}
 }
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
+/*post*/
+.post .post-title{display: block;display: -webkit-box;-webkit-box-orient:vertical;}
+/*add button loader*/
+.loader {display: flex;align-items: center;justify-content: center;background-color: transparent !important;} 
+.loader .dot {width: 10px;height: 10px;background-color: #C8102E;border-radius: 50%;margin: 0 2px;animation: leap 1s ease-in-out infinite, colorChange 2s infinite alternate;}
+.loader .dot:nth-child(2) {animation-delay: 0.2s;}
+.loader .dot:nth-child(3) {animation-delay: 0.4s;}
+@keyframes leap {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-5px);}
+    60% {transform: translateY(-5px);}
+}
+@keyframes colorChange {
+    0%, 100% {background-color: #242411;}
+    50% {background-color: #C8102E;}
+}
+/**/
+form button {min-width: 110px;min-height: 40px;}
+form button:disabled {opacity: 0.8;cursor: not-allowed;}
+
