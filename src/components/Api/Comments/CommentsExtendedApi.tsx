@@ -2,7 +2,7 @@ import { api } from "../MainApi";
 import { commentType } from "../Interfaces";
 import CommentsEnhancedApi from "./CommentsEnhancedApi";
 
-const notesExtendedApi = api.injectEndpoints({
+const PostsExtendedApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getComments: builder.query<commentType[], number>({
       query: (id) => ({
@@ -16,4 +16,4 @@ const notesExtendedApi = api.injectEndpoints({
 
 CommentsEnhancedApi();
 
-export const { useGetCommentsQuery } = notesExtendedApi;
+export const { useGetCommentsQuery } = PostsExtendedApi;

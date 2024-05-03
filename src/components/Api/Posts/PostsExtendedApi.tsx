@@ -7,7 +7,7 @@ import {
 } from "../Interfaces";
 import PostsEnhancedApi from "./PostsEnhancedApi";
 
-const notesExtendedApi = api.injectEndpoints({
+const PostsExtendedApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getPosts: builder.query<postType[], null>({
       query: () => ({
@@ -53,4 +53,4 @@ export const {
   useAddPostMutation,
   useEditPostMutation,
   useDeletePostMutation,
-} = notesExtendedApi;
+} = PostsExtendedApi;

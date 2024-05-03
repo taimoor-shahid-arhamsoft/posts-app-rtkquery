@@ -4,7 +4,7 @@ import { createBaseQuery } from "./ApiHead";
 const baseQuery = createBaseQuery();
 
 export const api = createApi({
-  reducerPath: "NotesApp",
+  reducerPath: "PostsApp",
   baseQuery: baseQuery,
   tagTypes: ["Post"],
   endpoints: () => ({}),
