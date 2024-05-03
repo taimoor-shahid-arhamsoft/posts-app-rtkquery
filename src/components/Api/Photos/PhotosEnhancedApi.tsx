@@ -1,13 +1,13 @@
 import { api } from "../MainApi";
 
-const CommentsEnhancedApi = () => {
+const PhotosEnhancedApi = () => {
   api.enhanceEndpoints({
     endpoints: {
       getComments: {
-        providesTags: ["Comment"],
+        providesTags: ["Photo"],
       },
     },
   });
 };
 
-export default CommentsEnhancedApi;
+export default PhotosEnhancedApi;

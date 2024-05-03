@@ -67,7 +67,7 @@ textarea{resize:none;}
   }
 }
 /*post*/
-.post .post-title{display: block;display: -webkit-box;-webkit-box-orient:vertical;}
+.post .post-title, .photo h3{display: block;display: -webkit-box;-webkit-box-orient:vertical;}
 /*add button loader*/
 .loader {display: flex;align-items: center;justify-content: center;background-color: transparent !important;} 
 .loader .dot {width: 10px;height: 10px;background-color: #C8102E;border-radius: 50%;margin: 0 2px;animation: leap 1s ease-in-out infinite, colorChange 2s infinite alternate;}

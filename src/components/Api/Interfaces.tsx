@@ -28,3 +28,11 @@ export interface DeleteResponse {
   message: string;
   success: boolean;
 }
+
+export interface PhotosResponse {
+  albumId: number,
+  id: number,
+  title: string,
+  url: string,
+  thumbnailUrl: string,
+}

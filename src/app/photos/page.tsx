@@ -1,32 +1,30 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import Post from "@/components/post/Post";
 import PageLoader from "@/components/loader/PageLoader";
-import { postType } from "@/components/Api/Interfaces";
-import { useGetPostsQuery } from "@/components/Api/Posts/PostsExtendedApi";
+import { PhotosResponse } from "@/components/Api/Interfaces";
+import { useGetPhotosQuery } from "@/components/Api/Photos/PhotosExtendedApi";
 import ExitModal from "@/components/ExitModal/ExitModal";
-import AddModal from "@/components/AddPostModal/AddPostModal";
+import Photo from "@/components/photo/Photo";
 
-export default function Posts() {
-  const [posts, setPosts] = useState<postType[]>([]);
+const Photos: React.FC = () => {
+  const [photos, setPhotos] = useState<PhotosResponse[]>([]);
   const [limit, setLimit] = useState<number>(15);
   const bottomRef = useRef<HTMLDivElement>(null);
   const [moreLoading, setMoreLoading] = useState<boolean>(false);
-  const postsLimit = posts.slice(0, limit);
-  const { data, isLoading } = useGetPostsQuery(null);
-  const [delLOader, setDelLOader] = useState<boolean>(false);
+  const photosLimit = photos.slice(0, limit);
+  const { data, isLoading } = useGetPhotosQuery(null);
 
   useEffect(() => {
     if (data) {
-      setPosts(data);
+      setPhotos(data);
     }
   }, [data]);
 
   useEffect(() => {
-    if (posts.length > 0) {
+    if (photos.length > 0) {
       scrollToBottom();
     }
-  }, [posts]);
+  }, [photos]);
 
   const scrollToBottom = () => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -49,39 +47,31 @@ export default function Posts() {
 
   return (
     <>
-      {moreLoading || isLoading || delLOader ? (
+      {moreLoading || isLoading ? (
         <PageLoader />
       ) : (
         <div className="post-page px-24 py-14">
           <ExitModal />
           <div className="head mb-80 flex items-center justify-center">
-            <h1 className="text-red text-center text-40">POSTS</h1>
-            <AddModal />
+            <h1 className="text-red text-center text-40">PHOTOS</h1>
           </div>
           <div className="flex flex-wrap mb-40">
-            {postsLimit?.map((post, index) => {
-              return <Post key={index} {...post} setDelLOader={setDelLOader} />;
+             {photosLimit?.map((photo, index) => {
+              return <Photo key={index} {...photo} />;
             })}
           </div>
           <div className="load-more-button text-center" ref={bottomRef}>
-            {postsLimit.length !== posts.length ? (
               <button
                 className="text-20 text-red bg-id py-3 px-8 rounded-5 inline-block text-20 font-bold"
                 onClick={loadMoreButton}
               >
                 LOAD MORE
               </button>
-            ) : (
-              <button
-                className="text-20 text-red bg-id py-3 px-8 rounded-5 inline-block text-20 font-bold"
-                onClick={loadLessButton}
-              >
-                SHOW LESS
-              </button>
-            )}
           </div>
         </div>
       )}
     </>
   );
 }
+
+export default Photos;

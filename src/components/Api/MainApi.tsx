@@ -6,6 +6,6 @@ const baseQuery = createBaseQuery();
 export const api = createApi({
   reducerPath: "PostsApp",
   baseQuery: baseQuery,
-  tagTypes: ["Post", "Comment"],
+  tagTypes: ["Post", "Comment", "Photo"],
   endpoints: () => ({}),
 });
